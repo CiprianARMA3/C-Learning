@@ -1,34 +1,20 @@
 ﻿internal class Persona
 {
-    private string? nome;
-    private string? cognome;
+    private string nome;
+    public string NomeFetched { get { return nome; } set { nome = value; } } //return to nome ; set nome = value;
+    private string testoprivato;
+    public string testo { get { return testoprivato; } set { testoprivato = value; } } 
     
-    private Persona(string? nome = null, string? cognome =null)
-    {
-        this.nome = nome ?? "IMP";
-        this.cognome = cognome ?? "IMP";
-    }
-    private void Mostra()
-    {
-        Console.WriteLine($"{nome} / {cognome}");
-    }
-
-    public static void Main(string[] args)
-    {
-        Persona ciprian = new Persona("Ciprian","Mariuta");
-        Persona test = new Persona();
-        ciprian.Mostra();
-        test.Mostra();
-    }
 }
 
 internal class Program
 {
-   // public static void Main(string[] args)
-   // {
-    //    Persona ciprian = new Persona("Ciprian", "Mariuta");
-    //    Persona test = new Persona();
-   //     ciprian.Mostra();
-   //     test.Mostra();
-   //  }
+    public static void Main(string[] args)
+    {
+        Persona ciprian = new Persona();
+        ciprian.NomeFetched = "Ciprian";
+        Console.WriteLine(ciprian.NomeFetched);
+        ciprian.testo = "ciao";
+        Console.WriteLine(ciprian.testo);
+    }
 }
