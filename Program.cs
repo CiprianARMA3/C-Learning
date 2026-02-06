@@ -1,37 +1,25 @@
-﻿// polymorphism
-// public virtual && override
-// oppure public abstract && override.
+﻿// interface
 
-
-public abstract class Animali
+interface IAnimali
 {
-    public abstract void suono();
-    public void dorme()
+    void suono();
+    void test();
+}
+internal class Cane : IAnimali
+{
+    public void suono()
     {
-        Console.WriteLine("zzzz...");
+        Console.WriteLine("bau bau");
+    }
+    public void test() {
+        Console.WriteLine("test");
     }
 }
-public class Cane : Animali
-{
-    public override void suono()
-    {
-        Console.WriteLine("Bau bau");
-    }
-}
-public class Gatto : Animali
-{
-    public override void suono()
-    {
-        Console.WriteLine("Miao miao");
-    }
-}
-
 internal class Program
 {
-    public static void Main(string[] args)
+    public static void Main(string[]args)
     {
-        Gatto gatto = new Gatto();
-        gatto.suono();
-        gatto.dorme();
+        Cane aky = new Cane();
+        aky.suono();
     }
 }
