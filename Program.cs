@@ -1,42 +1,37 @@
-﻿
-// inheritance in c#
-//sealed vuol dire chiuso
-public class Vehicle {
+﻿// polymorphism
+// public virtual && override
+// oppure public abstract && override.
 
-    public string? Brand { get; set; }
-    public int? Year { get; set; }
-    public Vehicle(string? Brand = null, int? Year = null)
+
+public abstract class Animali
+{
+    public abstract void suono();
+    public void dorme()
     {
-        this.Brand = Brand ?? "Brand not given";
-        this.Year = Year;
+        Console.WriteLine("zzzz...");
     }
-    public void showInfo()
+}
+public class Cane : Animali
+{
+    public override void suono()
     {
-        string converted_year = Year.HasValue ? Year.Value.ToString() : "Not given";
-        Console.WriteLine($"Brand : {Brand} && Year : {converted_year}");
+        Console.WriteLine("Bau bau");
+    }
+}
+public class Gatto : Animali
+{
+    public override void suono()
+    {
+        Console.WriteLine("Miao miao");
     }
 }
 
-public class Car : Vehicle {
-    public int? Doors { get; set; }
-    public Car(string? brand= null , int? year=null, int? Doors= null) : base(brand,year){
-        this.Doors = Doors;
-    }
-    public void showInfo()  
-    {
-        string converted_year = Year.HasValue ? Year.Value.ToString() : "Not given";
-        Console.WriteLine($"Brand : {Brand} && Year : {converted_year} && doors : {Doors}");
-    }
-}
-
-
-class Program
+internal class Program
 {
     public static void Main(string[] args)
     {
-        Car macchina = new Car("BMW",2000,4);
-        macchina.showInfo();
-        
+        Gatto gatto = new Gatto();
+        gatto.suono();
+        gatto.dorme();
     }
 }
-
