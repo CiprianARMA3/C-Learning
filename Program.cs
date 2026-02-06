@@ -1,9 +1,9 @@
 ﻿internal class Persona
 {
-    private string nome;
-    public string NomeFetched { get { return nome; } set { nome = value; } } //return to nome ; set nome = value;
-    private string testoprivato;
-    public string testo { get { return testoprivato; } set { testoprivato = value; } } 
+    private string? nome;
+    public string NomeFetched { get { return nome ?? "NULL"; } set { nome = value; } } //return to nome ; set nome = value;
+    private string? testoprivato;
+    public string testo { get { return testoprivato ?? "NULL"; } set { testoprivato = value; } } 
     
 }
 
