@@ -1,5 +1,6 @@
 ﻿
 // inheritance in c#
+//sealed vuol dire chiuso
 public class Vehicle {
 
     public string? Brand { get; set; }
