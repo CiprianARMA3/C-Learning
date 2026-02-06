@@ -1,47 +1,88 @@
-﻿class User
+﻿using System.Security.Cryptography.X509Certificates;
+
+public enum Semaforo
 {
-    public string? name { get; set; }
-    public User(string? name = null)
-    {
-        this.name = name;
-    }
-}
-class PhoneNumber : User
-{
-    public int? numero_telefonico { get; set; }
-    public PhoneNumber(int? numero_telefonico, string? name) : base(name)
-    {
-        this.numero_telefonico = numero_telefonico;
-    }
-    public void output()
-    {
-        Console.WriteLine($"Name : {name} && Phone number : {numero_telefonico}");
-    }
+    VERDE,
+    GIALLO,
+    ROSSO
 }
 
-
-class Program
+public class ControllaPermessi
 {
-    public static void Main()
+    public  void Check(Semaforo luce)
     {
-        PhoneNumber ciprian = new PhoneNumber(000, "ciprian");
-        ciprian.output();
-        Test1 test = new Test1("ciao");
-        Console.WriteLine(Test1.input);
-        Test1.output();
+        switch (luce)
+        {
+            case Semaforo.ROSSO:
+                Console.WriteLine("Non puoi passare");
+                break;
+            case Semaforo.GIALLO:
+                Console.WriteLine("rallentare");
+                break;
+            case Semaforo.VERDE:
+                Console.WriteLine("vai");
+                break;
+        }
 
     }
 }
 
-class Test1
+
+public enum Ruoli
 {
-    public static string? input { get; set; }
-    public Test1(string? inputComp = null)
+    Manager,
+    Developer,
+    Tester
+}
+public enum Permessi
+{
+    Read,Write,Delete
+}
+
+public class ControlloRuoli
+{
+    public static string[] AssegnaRuoli(Ruoli ruolo)
     {
-        input = inputComp;
+        string[] permissions = [];
+
+        switch (ruolo)
+        {
+            case Ruoli.Manager:
+                permissions = new string[] {
+                    nameof(Permessi.Read),
+                    nameof(Permessi.Write),
+                    nameof(Permessi.Delete)
+                };
+                break;
+            case Ruoli.Developer:
+                permissions = new string[]
+                {
+                    nameof(Permessi.Write),
+                    nameof(Permessi.Read)
+                };break;
+            case Ruoli.Tester:
+                permissions = new string[]
+                {
+                    nameof(Permessi.Read)
+                };
+                break;
+        }
+        return permissions;
     }
-    public static void output()
+
+
+    class Program
     {
-        Console.WriteLine("output123");
+        public static void Main(string[] args)
+        {
+            ControllaPermessi auto = new ControllaPermessi();
+            auto.Check(Semaforo.GIALLO);
+
+            string[] permessiOttenuti = ControlloRuoli.AssegnaRuoli(Ruoli.Manager);
+            foreach (string s in permessiOttenuti)
+            {
+                Console.WriteLine(s);
+            }
+        }
     }
 }
