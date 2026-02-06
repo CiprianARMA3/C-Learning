@@ -1,25 +1,47 @@
-﻿// interface
+﻿class User
+{
+    public string? name { get; set; }
+    public User(string? name = null)
+    {
+        this.name = name;
+    }
+}
+class PhoneNumber : User
+{
+    public int? numero_telefonico { get; set; }
+    public PhoneNumber(int? numero_telefonico, string? name) : base(name)
+    {
+        this.numero_telefonico = numero_telefonico;
+    }
+    public void output()
+    {
+        Console.WriteLine($"Name : {name} && Phone number : {numero_telefonico}");
+    }
+}
 
-interface IAnimali
+
+class Program
 {
-    void suono();
-    void test();
-}
-internal class Cane : IAnimali
-{
-    public void suono()
+    public static void Main()
     {
-        Console.WriteLine("bau bau");
-    }
-    public void test() {
-        Console.WriteLine("test");
+        PhoneNumber ciprian = new PhoneNumber(000, "ciprian");
+        ciprian.output();
+        Test1 test = new Test1("ciao");
+        Console.WriteLine(Test1.input);
+        Test1.output();
+
     }
 }
-internal class Program
+
+class Test1
 {
-    public static void Main(string[]args)
+    public static string? input { get; set; }
+    public Test1(string? inputComp = null)
     {
-        Cane aky = new Cane();
-        aky.suono();
+        input = inputComp;
+    }
+    public static void output()
+    {
+        Console.WriteLine("output123");
     }
 }
